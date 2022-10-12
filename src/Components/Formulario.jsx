@@ -22,7 +22,7 @@ export const Formulario = ({onInputSubmit}) => {
             
             <div className="w-25 m-auto">
 
-            <input aria-label="tamañoMatriz" className="form-control text-center" type="number" />
+            <input aria-label="tamañoMatriz" className="form-control text-center" type="number" pattern="[1-5]" placeholder="Tamaño de la Matriz" />
 
             </div>
 
