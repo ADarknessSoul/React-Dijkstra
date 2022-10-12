@@ -11,7 +11,7 @@ export const Formulario = () => {
             
             <div className="w-25 m-auto">
 
-            <input className="form-control" type="number" />
+            <input className="form-control" type="number" pattern="[1-5]" placeholder="Tamaño de la Matriz" />
 
             </div>
 
