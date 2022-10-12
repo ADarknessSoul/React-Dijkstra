@@ -4,7 +4,7 @@ import { Dijkstra } from './Dijkstra'
 import './css/bootstrap.min.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Dijkstra />
-  </React.StrictMode>
+  // </React.StrictMode>
 )
