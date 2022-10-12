@@ -5,18 +5,18 @@ import { Grid } from "./Components/Grid"
 export const Dijkstra = () => {
     
     const row = [];
-    const [evaluado, setEvaluado] = useState(false);
+    const [arrGrid, setArrGrid] = useState([]);
     const [grid, setGrid] = useState(0);
 
     const onInputSubmit = (value) => {
 
-        for(let i = 0; i < value; i++) {
+        for(let i = 1; i <= value; i++) {
 
             row.push(i.toString());
 
         }
 
-        console.log(row);
+        setArrGrid([...row]);
 
         setGrid(value);
 
@@ -34,9 +34,9 @@ export const Dijkstra = () => {
 
             {
 
-                    row.map( button => (
+                    arrGrid.map( button => (
 
-                        <Grid key={button}/>
+                        <Grid key={button} numCol={grid}/>
     
                     ))
 
