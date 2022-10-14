@@ -26,7 +26,7 @@ export const Dijkstra = () => {
   return (
     <>
 
-        <h1 className="text-center text-uppercase">Algoritmo de Dijkstra</h1>
+        <h1 className="text-center text-uppercase forma-text">Algoritmo de Dijkstra</h1>
 
         <Formulario onInputSubmit={onInputSubmit} />
 
