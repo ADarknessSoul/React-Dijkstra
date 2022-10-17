@@ -71,6 +71,12 @@ export const Dijkstra = () => {
   return (
     <>
 
+      {
+
+        console.log(completeGrid)
+
+      }
+
         <h1 className="text-center text-uppercase forma-text">Algoritmo de Dijkstra</h1>
 
         <Formulario onInputSubmit={onInputSubmit} />
