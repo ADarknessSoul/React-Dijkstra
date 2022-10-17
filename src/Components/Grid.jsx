@@ -1,9 +1,33 @@
+import { useEffect, useState } from "react"
+import { Column } from "./Column"
 
-export const Grid = () => {
+export const Grid = ({numCol}) => {
+
+  const arrCol = [];
+
+  for(let i = 1; i <= numCol; i++) {
+
+    arrCol.push(i.toString());
+
+  }
+
   return (
     <>
-    
-        <button style={{height: 150}} className="btn btn-dark col-12"></button>
+
+      <div className="row">
+
+          {
+
+            arrCol.map( column => (
+
+               <Column key={column} />
+
+            ))
+
+          }
+
+      </div>
+
 
     </>
   )
