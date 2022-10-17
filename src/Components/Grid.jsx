@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react"
 import { Column } from "./Column"
 
-export const Grid = ({numCol}) => {
-
-  const arrCol = [];
-
-  for(let i = 1; i <= numCol; i++) {
-
-    arrCol.push(i.toString());
-
-  }
+export const Grid = ({row}) => {
 
   return (
     <>
@@ -18,12 +10,43 @@ export const Grid = ({numCol}) => {
 
           {
 
-            arrCol.map( column => (
+// row.map((node, nodeIdx) => {
+//   const {row, col, isFinish, isStart, isWall} = node;
+//   return (
+//     <Node
+//       key={nodeIdx}
+//       col={col}
+//       isFinish={isFinish}
+//       isStart={isStart}
+//       isWall={isWall}
+//       mouseIsPressed={mouseIsPressed}
+//       onMouseDown={(row, col) => this.handleMouseDown(row, col)}
+//       onMouseEnter={(row, col) =>
+//         this.handleMouseEnter(row, col)
+//       }
+//       onMouseUp={() => this.handleMouseUp()}
+//       row={row}></Node>
+//   );
+// })
 
-               <Column key={column} />
+            row.map((cell, cellIndex) => {
 
-            ))
+              const {gridRow, gridCol, isFinish, isStart, isWall} = cell;
 
+              return (
+
+                <Column 
+                  key={cellIndex}
+                  row={gridRow}
+                  col={gridCol}
+                  isFinish={isFinish}
+                  isStart={isStart}
+                  isWall={isWall}
+                />
+
+              );
+
+            })
           }
 
       </div>

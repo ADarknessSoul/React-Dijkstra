@@ -85,11 +85,18 @@ export const Dijkstra = () => {
 
             {
 
-                    arrGrid.map( button => (
+              completeGrid.map((row, rowIndex) => (
 
-                        <Grid key={button} numCol={row}/>
+                <Grid key={rowIndex} row={row}/>
+
+              ))
+
+
+              // arrGrid.map( button => (
+
+              //     <Grid key={button} numCol={row}/>
     
-                    ))
+              // ))
 
             }
 
