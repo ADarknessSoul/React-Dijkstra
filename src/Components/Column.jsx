@@ -7,7 +7,11 @@ export const Column = ({row, col, isFinish, isStart, isWall, onMouseDown}) => {
   ? 'node-start'
   : isWall
   ? 'node-wall'
-  : '';
+  : col
+  ?'node'
+  : row
+  ? 'node'
+  : 'node';
 
   return (
 
@@ -15,7 +19,7 @@ export const Column = ({row, col, isFinish, isStart, isWall, onMouseDown}) => {
     
         <div 
           style={{height: 150}} 
-          className={`bg-dark col m-2 ${extraClassName}`}
+          className={` col m-2 ${extraClassName}`}
           id={`node-${row}-${col}`}
           onMouseDown={() => onMouseDown(row, col)}
         >
