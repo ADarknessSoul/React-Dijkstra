@@ -1,5 +1,5 @@
 
-export const Column = ({row, col, isFinish, isStart, isWall}) => {
+export const Column = ({row, col, isFinish, isStart, isWall, onMouseDown}) => {
 
   const extraClassName = isFinish
   ? 'node-finish'
@@ -17,6 +17,7 @@ export const Column = ({row, col, isFinish, isStart, isWall}) => {
           style={{height: 150}} 
           className={`bg-dark col m-2 ${extraClassName}`}
           id={`node-${row}-${col}`}
+          onMouseDown={() => onMouseDown(row, col)}
         >
         </div>
 

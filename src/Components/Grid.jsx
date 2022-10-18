@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react"
 import { Column } from "./Column"
 
-export const Grid = ({row}) => {
+export const Grid = ({row, newGrid}) => {
+
+ const handleMouseDown = (row, col) => {
+
+  newGrid(row, col);
+
+ }
 
   return (
     <>
@@ -9,25 +15,6 @@ export const Grid = ({row}) => {
       <div className="row">
 
           {
-
-// row.map((node, nodeIdx) => {
-//   const {row, col, isFinish, isStart, isWall} = node;
-//   return (
-//     <Node
-//       key={nodeIdx}
-//       col={col}
-//       isFinish={isFinish}
-//       isStart={isStart}
-//       isWall={isWall}
-//       mouseIsPressed={mouseIsPressed}
-//       onMouseDown={(row, col) => this.handleMouseDown(row, col)}
-//       onMouseEnter={(row, col) =>
-//         this.handleMouseEnter(row, col)
-//       }
-//       onMouseUp={() => this.handleMouseUp()}
-//       row={row}></Node>
-//   );
-// })
 
             row.map((cell, cellIndex) => {
 
@@ -42,6 +29,7 @@ export const Grid = ({row}) => {
                   isFinish={isFinish}
                   isStart={isStart}
                   isWall={isWall}
+                  onMouseDown={(gridRow, gridCol) => handleMouseDown(gridRow, gridCol)}
                 />
 
               );

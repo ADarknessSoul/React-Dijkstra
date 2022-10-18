@@ -5,9 +5,9 @@ import { Grid } from "./Components/Grid"
 export const Dijkstra = () => {
 
     const auxiliarRow = [];
-    const [arrGrid, setArrGrid] = useState([]);
     const [row, setRow] = useState(0);
     const [completeGrid, setCompleteGrid] = useState([]);
+    const [mousePressed, setMousePressed] = useState(false);
 
     const START_NODE_ROW = 0;
     const START_NODE_COL = 0;
@@ -22,8 +22,6 @@ export const Dijkstra = () => {
             auxiliarRow.push(i.toString());
 
         }
-
-        setArrGrid([...auxiliarRow]);
 
         setRow(parseInt(value));
 
@@ -50,7 +48,12 @@ export const Dijkstra = () => {
 
     }
     
-    
+    // const handleMouse2 = (row, col) => {
+
+    //   console.log("Hola pete");
+
+    // }
+
     const createNode = (gridCol, gridRow, value) => {
         
         // console.log("Fila: ", gridRow, value - 1);
@@ -68,18 +71,38 @@ export const Dijkstra = () => {
         };
       };
 
+  const handleNewGrid = (row, col) => {
+
+    const newGrid = getGridWithtoggledWall(row, col);
+    setCompleteGrid(newGrid.slice());
+
+  }
+
+  const getGridWithtoggledWall = (row, col) => {
+
+    const newGrid = completeGrid.slice(); 
+    const node = newGrid[row][col];
+    const newNode = {       //Copy the properties of the node (newGrid) and toggle isWall
+      ...node,
+      isWall: !node.isWall,
+    };
+    newGrid[row][col] = newNode;
+    return newGrid;
+
+  }
+
   return (
     <>
-
-      {
-
-        console.log(completeGrid)
-
-      }
 
         <h1 className="text-center text-uppercase forma-text">Algoritmo de Dijkstra</h1>
 
         <Formulario onInputSubmit={onInputSubmit} />
+
+        {
+
+          console.log(completeGrid)
+
+        }
 
         <div className="container">
 
@@ -87,7 +110,7 @@ export const Dijkstra = () => {
 
               completeGrid.map((row, rowIndex) => (
 
-                <Grid key={rowIndex} row={row}/>
+                <Grid key={rowIndex} row={row} newGrid={(row, col) => handleNewGrid(row, col)}/>
 
               ))
 
