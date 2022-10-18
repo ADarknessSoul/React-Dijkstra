@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { dijkstra } from "./Algoritmo/dijkstra"
 import { Formulario } from "./Components/Formulario"
 import { Grid } from "./Components/Grid"
 
@@ -12,7 +13,7 @@ export const Dijkstra = () => {
     const START_NODE_ROW = 0;
     const START_NODE_COL = 0;
     const FINISH_NODE_ROW = row - 1;
-    const FINISH_NODE_COL = (row * row) - 1;
+    const FINISH_NODE_COL = row - 1;
 
 
     const onInputSubmit = (value) => {
@@ -91,6 +92,17 @@ export const Dijkstra = () => {
 
   }
 
+  const handleVisualize = () => {
+
+    if(completeGrid.length === 0) return;
+    //Declarar nodos de inicio y final
+    const startNode = completeGrid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = completeGrid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const visitedNodesInOrder = dijkstra(completeGrid, startNode, finishNode);
+    console.log(visitedNodesInOrder);
+
+  }
+
   return (
     <>
 
@@ -104,6 +116,12 @@ export const Dijkstra = () => {
 
         }
 
+        <div className="text-center">
+
+        <button className="btn btn-outline-success" onClick={handleVisualize}>Visualizar dijkstra</button>
+
+        </div>
+
         <div className="container">
 
             {
@@ -113,13 +131,6 @@ export const Dijkstra = () => {
                 <Grid key={rowIndex} row={row} newGrid={(row, col) => handleNewGrid(row, col)}/>
 
               ))
-
-
-              // arrGrid.map( button => (
-
-              //     <Grid key={button} numCol={row}/>
-    
-              // ))
 
             }
 
