@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react"
 import { Column } from "./Column"
 
-export const Grid = ({numCol}) => {
+export const Grid = ({row, newGrid}) => {
 
-  const arrCol = [];
+ const handleMouseDown = (row, col) => {
 
-  for(let i = 1; i <= numCol; i++) {
+  newGrid(row, col);
 
-    arrCol.push(i.toString());
-
-  }
+ }
 
   return (
     <>
@@ -18,12 +16,25 @@ export const Grid = ({numCol}) => {
 
           {
 
-            arrCol.map( column => (
+            row.map((cell, cellIndex) => {
 
-               <Column key={column} />
+              const {gridRow, gridCol, isFinish, isStart, isWall} = cell;
 
-            ))
+              return (
 
+                <Column 
+                  key={cellIndex}
+                  row={gridRow}
+                  col={gridCol}
+                  isFinish={isFinish}
+                  isStart={isStart}
+                  isWall={isWall}
+                  onMouseDown={(gridRow, gridCol) => handleMouseDown(gridRow, gridCol)}
+                />
+
+              );
+
+            })
           }
 
       </div>

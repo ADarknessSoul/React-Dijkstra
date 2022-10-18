@@ -1,13 +1,25 @@
 
-export const Column = () => {
+export const Column = ({row, col, isFinish, isStart, isWall, onMouseDown}) => {
 
-    console.log("Hola");
+  const extraClassName = isFinish
+  ? 'node-finish'
+  : isStart
+  ? 'node-start'
+  : isWall
+  ? 'node-wall'
+  : '';
 
   return (
 
     <>
     
-        <button style={{height: 150}} className="btn btn-dark col m-2"></button>
+        <div 
+          style={{height: 150}} 
+          className={`bg-dark col m-2 ${extraClassName}`}
+          id={`node-${row}-${col}`}
+          onMouseDown={() => onMouseDown(row, col)}
+        >
+        </div>
 
     </>
 
