@@ -49,17 +49,9 @@ export const Dijkstra = () => {
 
     }
     
-    // const handleMouse2 = (row, col) => {
-
-    //   console.log("Hola pete");
-
-    // }
 
     const createNode = (gridCol, gridRow, value) => {
         
-        // console.log("Fila: ", gridRow, value - 1);
-        // console.log("Columna: ", gridCol, (value * value) - 1);
-
         return {
           gridCol,
           gridRow,
@@ -99,9 +91,18 @@ export const Dijkstra = () => {
     const startNode = completeGrid[START_NODE_ROW][START_NODE_COL];
     const finishNode = completeGrid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(completeGrid, startNode, finishNode);
-    console.log(visitedNodesInOrder);
+    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+    animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
 
   }
+
+  //animateDijkstra
+
+
+
+  //animateShortestPath
+
+  
 
   return (
     <>
@@ -109,12 +110,6 @@ export const Dijkstra = () => {
         <h1 className="text-center text-uppercase forma-text">Algoritmo de Dijkstra</h1>
 
         <Formulario onInputSubmit={onInputSubmit} />
-
-        {
-
-          console.log(completeGrid)
-
-        }
 
         <div className="text-center">
 
