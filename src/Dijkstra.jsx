@@ -83,6 +83,20 @@ export const Dijkstra = () => {
     return newGrid;
 
   }
+  function sortNodesByDistance(unvisitedNodes) {
+
+    unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
+
+  }
+  
+  function updateUnvisitedNeighbors(node, completeGrid) {
+    const unvisitedNeighbors = getUnvisitedNeighbors(node, completeGrid);
+
+    for (const neighbor of unvisitedNeighbors) {
+      neighbor.distance = node.distance + 1;
+      neighbor.previousNode = node;
+    }
+  }
 
   const handleVisualize = () => {
 
