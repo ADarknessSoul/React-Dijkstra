@@ -21,6 +21,16 @@ export const dijkstra = (completeGrid, startNode, finishNode) => {
 
 }
 
+  function getAllNodes(completeGrid) {
+    const nodes = [];
+    for (const row of completeGrid) {
+      for (const node of row) {
+        nodes.push(node);
+      }
+    }
+  
+    return nodes;
+  }
 
 
 export function getNodesInShortestPathOrder(finishNode) {
