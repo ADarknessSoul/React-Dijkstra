@@ -100,7 +100,17 @@ export const Dijkstra = () => {
 
 
 
-  //animateShortestPath
+
+  const animateShortestPath = (nodesInShortestPathOrder) => {
+    for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
+      setTimeout(() => {
+        const node = nodesInShortestPathOrder[i];
+        const nodeshortest = document.getElementById(`node-${node.gridRow}-${node.gridCol}`);
+        nodeshortest.classList.add('node-shortest-path');
+
+      }, 50 * i);
+    }
+  }
 
   
 
