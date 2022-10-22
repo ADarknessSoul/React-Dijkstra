@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { dijkstra } from "./Algoritmo/dijkstra"
+import { dijkstra, getNodesInShortestPathOrder } from "./Algoritmo/dijkstra"
 import { Formulario } from "./Components/Formulario"
 import { Grid } from "./Components/Grid"
 
@@ -82,20 +82,6 @@ export const Dijkstra = () => {
     newGrid[row][col] = newNode;
     return newGrid;
 
-  }
-  function sortNodesByDistance(unvisitedNodes) {
-
-    unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
-
-  }
-  
-  function updateUnvisitedNeighbors(node, completeGrid) {
-    const unvisitedNeighbors = getUnvisitedNeighbors(node, completeGrid);
-
-    for (const neighbor of unvisitedNeighbors) {
-      neighbor.distance = node.distance + 1;
-      neighbor.previousNode = node;
-    }
   }
 
   const handleVisualize = () => {

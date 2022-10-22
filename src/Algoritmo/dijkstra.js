@@ -21,6 +21,21 @@ export const dijkstra = (completeGrid, startNode, finishNode) => {
 
 }
 
+function sortNodesByDistance(unvisitedNodes) {
+
+  unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
+
+}
+
+function updateUnvisitedNeighbors(node, completeGrid) {
+  const unvisitedNeighbors = getUnvisitedNeighbors(node, completeGrid);
+
+  for (const neighbor of unvisitedNeighbors) {
+    neighbor.distance = node.distance + 1;
+    neighbor.previousNode = node;
+  }
+}
+
   function getAllNodes(completeGrid) {
     const nodes = [];
     for (const row of completeGrid) {
