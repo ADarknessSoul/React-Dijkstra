@@ -31,7 +31,17 @@ export const dijkstra = (completeGrid, startNode, finishNode) => {
   
     return nodes;
   }
+  
+  function getUnvisitedNeighbors(node, completeGrid) {
+    const neighbors = [];
+    const {gridCol, gridRow} = node;
+    if (gridRow > 0) neighbors.push(completeGrid[gridRow - 1][gridCol]);
+    if (gridRow < completeGrid.length - 1) neighbors.push(completeGrid[gridRow + 1][gridCol]);
+    if (gridCol > 0) neighbors.push(completeGrid[gridRow][gridCol - 1]);
+    if (gridCol < completeGrid[0].length - 1) neighbors.push(completeGrid[gridRow][gridCol + 1]);
 
+    return neighbors.filter(neighbor => !neighbor.isVisited);
+  }
 
 export function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];

@@ -110,8 +110,24 @@ export const Dijkstra = () => {
 
   }
 
-  //animateDijkstra
+  //animateDijkstra chino 
+  const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+      if (i === visitedNodesInOrder.length) {
+        setTimeout(() => {
+          animateShortestPath(nodesInShortestPathOrder);
+        }, 10 * i);
+        return;
+      }
+      setTimeout(() => {
+        const node = visitedNodesInOrder[i];
+        let nodolargest = document.getElementById(`node-${node.gridRow}-${node.gridCol}`); 
+        console.log(nodolargest);
+        nodolargest.classList.add('node-visited');
 
+      }, 10 * i);
+    }
+  }
 
 
 
