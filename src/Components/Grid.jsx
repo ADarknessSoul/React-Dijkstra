@@ -1,11 +1,22 @@
-import { useEffect, useState } from "react"
 import { Column } from "./Column"
 
-export const Grid = ({row, newGrid}) => {
+export const Grid = ({row, newGrid, mouseUp, mouseEnter}) => {
 
  const handleMouseDown = (row, col) => {
 
   newGrid(row, col);
+
+ }
+
+ const handleMouseUp = () => {
+
+  mouseUp();
+
+ }
+
+ const handleMouseEnter = (row, col) => {
+
+  mouseEnter(row, col);
 
  }
 
@@ -30,6 +41,8 @@ export const Grid = ({row, newGrid}) => {
                   isStart={isStart}
                   isWall={isWall}
                   onMouseDown={(gridRow, gridCol) => handleMouseDown(gridRow, gridCol)}
+                  onMouseUp={handleMouseUp}
+                  onMouseEnter={(gridRow, gridCol) => handleMouseEnter(gridRow, gridCol)}
                 />
 
               );

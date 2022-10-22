@@ -52,6 +52,23 @@ export const Dijkstra = () => {
 
     const createNode = (gridCol, gridRow, value) => {
         
+      if(document.getElementById(`node-${gridRow}-${gridCol}`) != null) {
+
+        let node = document.getElementById(`node-${gridRow}-${gridCol}`);
+
+        return {
+          gridCol,
+          gridRow,
+          isStart: gridRow === 0 && gridCol === 0,
+          isFinish: gridRow === value - 1 && gridCol === value - 1,
+          distance: Infinity,
+          isVisited: false,
+          isWall: node.classList.contains("node-wall") ? true : false,
+          previousNode: null,
+        };
+
+      }
+
         return {
           gridCol,
           gridRow,
@@ -62,10 +79,12 @@ export const Dijkstra = () => {
           isWall: false,
           previousNode: null,
         };
+        
       };
 
   const handleNewGrid = (row, col) => {
 
+    setMousePressed(true);
     const newGrid = getGridWithtoggledWall(row, col);
     setCompleteGrid(newGrid.slice());
 
@@ -84,15 +103,58 @@ export const Dijkstra = () => {
 
   }
 
+  const deactivateSelection = () => {
+
+    setMousePressed(false);
+
+  }
+
+  const handleNewGridIfMousePressed = (row, col) => {
+
+    if(!mousePressed) return;
+
+    const newGrid = getGridWithtoggledWall(row, col);
+    setCompleteGrid(newGrid.slice());
+
+  }
+
   const handleVisualize = () => {
 
     if(completeGrid.length === 0) return;
+
+    const auxiliarGrid = getCompleteGrid(parseInt(row));
+    setCompleteGrid(auxiliarGrid.slice());
+    toggleClasses();
     //Declarar nodos de inicio y final
     const startNode = completeGrid[START_NODE_ROW][START_NODE_COL];
     const finishNode = completeGrid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(completeGrid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+
+  }
+
+  const toggleClasses = () => {
+
+    for(let i = 0; i < row; i++) {
+
+      for(let j = 0; j < row; j++) {
+
+        let node = document.getElementById(`node-${i}-${j}`);
+        if(node.classList.contains("node-shortest-path")) {
+
+          node.classList.remove("node-shortest-path");
+
+        }
+        else if(node.classList.contains("node-visited")) {
+
+          node.classList.remove("node-visited");
+
+        }
+
+      }
+
+    }
 
   }
 
@@ -108,7 +170,6 @@ export const Dijkstra = () => {
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         let nodolargest = document.getElementById(`node-${node.gridRow}-${node.gridCol}`); 
-        console.log(nodolargest);
         nodolargest.classList.add('node-visited');
 
       }, 10 * i);
@@ -149,7 +210,13 @@ export const Dijkstra = () => {
 
               completeGrid.map((row, rowIndex) => (
 
-                <Grid key={rowIndex} row={row} newGrid={(row, col) => handleNewGrid(row, col)}/>
+                <Grid 
+                  key={rowIndex} 
+                  row={row} 
+                  newGrid={(row, col) => handleNewGrid(row, col)} 
+                  mouseUp={deactivateSelection} 
+                  mouseEnter={(row, col) => handleNewGridIfMousePressed(row, col)}
+                />
 
               ))
 
