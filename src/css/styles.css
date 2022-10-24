@@ -7,16 +7,16 @@ input:invalid{
     color: white;
 }
 .node-start{
-    background-color: green;
+    background-color: rgb(1, 109, 1);
 }
 
 .node-finish{
-    background-color: blue;
+    background-color: rgba(139, 0, 0, 0.966);
 
 }
 
 .node-wall{
-    background-color: red;
+    background-color: rgb(126, 5, 5);
 }
 
 .node{
@@ -72,7 +72,7 @@ input:invalid{
 /* .node-visited  chino */
 .node-visited {
     animation-name: visitedAnimation;
-    animation-duration: 5s;
+    animation-duration: 1.5s;
     animation-timing-function: ease-out;
     animation-delay: 0;
     animation-direction: alternate;
@@ -84,29 +84,34 @@ input:invalid{
   @keyframes visitedAnimation {
     0% {
       transform: scale(0.3);
-      background-color: rgba(0, 0, 66, 0.75);
+      background-color:rgba(255, 0, 0, 1);
       /* border-radius: 100%; */
     }
-  
+    25%{
+      transform: scale(1.3);
+      background-color:rgba(0, 202, 11, 1);
+    }
     50% {
-      background-color: rgba(17, 104, 217, 0.75);
+      background-color:rgba(163, 0, 184, 0.02);
     }
-  
-    75% {
+    65%{
+      transform: scale(0.5);
+      background-color: rgba(66, 0, 171, 1); /*rgba(0, 146, 255, 1)*/
+    }
+    85% {
       transform: scale(1.2);
-      background-color: rgba(0, 217, 159, 0.75);
+      background-color :rgba(0, 0, 255, 1);
     }
-  
     100% {
       transform: scale(1);
-      background-color: rgba(0, 190, 218, 0.75);
+      background-color:rgba(0, 0, 0, 0.02);
     }
   }
 
 
 .node-shortest-path {
     animation-name: shortestPath;
-    animation-duration: 1.5s;
+    animation-duration: 6s;
     animation-timing-function: ease-out;
     animation-delay: 0;
     animation-direction: alternate;
@@ -118,16 +123,20 @@ input:invalid{
   @keyframes shortestPath {
     0% {
       transform: scale(0.6);
-      background-color: rgb(255, 254, 106);
+      background-color: rgba(248, 0, 0, 1);
+    }
+    25%{
+      transform: scale(0.9);
+      background-color:rgba(0, 0, 0, 1);
     }
   
     50% {
       transform: scale(1.2);
-      background-color: rgb(255, 254, 106);
+      background-color: rgba(248, 116, 0, 1);
     }
   
     100% {
       transform: scale(1);
-      background-color: rgb(255, 254, 106);
+      background-color: rgba(248, 189, 0, 1);
     }
   }
